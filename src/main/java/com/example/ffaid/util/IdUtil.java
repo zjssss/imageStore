@@ -1,4 +1,4 @@
-package com.example.ffaid.Util;
+package com.example.ffaid.util;
 
 import java.security.SecureRandom;
 

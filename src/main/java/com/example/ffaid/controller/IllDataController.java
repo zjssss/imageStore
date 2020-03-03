@@ -9,11 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * @author DIX
- * @version 1.0
- * @description
  * @date 2019/12/9 12:13
  */
 @RestController
+@CrossOrigin
 public class IllDataController {
     @Autowired
     private IllDataService illDataService;

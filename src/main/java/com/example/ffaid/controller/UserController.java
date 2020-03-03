@@ -1,34 +1,30 @@
 package com.example.ffaid.controller;
 
-import com.example.ffaid.Util.FileUpLoadUtil;
-import com.example.ffaid.Util.IdUtil;
+import com.example.ffaid.util.FileUpLoadUtil;
+import com.example.ffaid.util.IdUtil;
 import com.example.ffaid.domain.User;
 import com.example.ffaid.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.annotation.MultipartConfig;
-import java.sql.Date;
-import java.sql.Timestamp;
+import com.example.ffaid.util.BaiduAuth;
 
 
 /**
  * @author DIX
- * @version 1.0
- * @description
  * @date 2019/11/29 20:01
  */
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/users")
 public class UserController {
     @Autowired
     private UserService userService;
+
+    private BaiduAuth baiduAuth;
 
     private String handleUploadPicture(MultipartFile file) {
         String path = "/ffaid/files/"
@@ -58,6 +54,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable("id") Integer id) {
+//        String auth=BaiduAuth.getAuth();
+//        System.out.print(auth);
         return userService.getUser(id);
     }
 

@@ -14,8 +14,6 @@ import java.util.logging.Logger;
 
 /**
  * @author DIX
- * @version 1.0
- * @description
  * @date 2019/11/29 19:48
  */
 @Repository
@@ -49,17 +47,17 @@ public class UserDao {
     }
 
     public User getUser(Integer id) {
-        long startTime=System.currentTimeMillis();
-        String key = "U_" + id;
-        User user = (User) redisTemplate.opsForValue().get(key);
-        if (user == null) {
-            user = userMapper.getUser(id);
-            redisTemplate.opsForValue().set(key, user);
-        }
-        long endTime=System.currentTimeMillis();
-        System.out.println(key);
-        System.out.println(endTime-startTime);
-        return user;
+//        long startTime=System.currentTimeMillis();
+//        String key = "U_" + id;
+//        User user = (User) redisTemplate.opsForValue().get(key);
+//        if (user == null) {
+//            user = userMapper.getUser(id);
+//            redisTemplate.opsForValue().set(key, user);
+//        }
+//        long endTime=System.currentTimeMillis();
+//        System.out.println(key);
+//        System.out.println(endTime-startTime);
+        return userMapper.getUser(id);
     }
 
 //    public User getUser(Integer id)

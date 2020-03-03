@@ -1,4 +1,4 @@
-package com.example.ffaid.Util;
+package com.example.ffaid.util;
 
 import org.springframework.web.multipart.MultipartFile;
 

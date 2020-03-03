@@ -1,22 +1,17 @@
 package com.example.ffaid.controller;
 
-import com.example.ffaid.Util.FileUpLoadUtil;
-import com.example.ffaid.Util.IdUtil;
 import com.example.ffaid.domain.UrgentTel;
 import com.example.ffaid.service.UrgentTelService;
-import org.hibernate.validator.constraints.CodePointLength;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 /**
  * @author DIX
- * @version 1.0
- * @description
  * @date 2019/12/9 17:17
  */
+@CrossOrigin
 @RestController
 public class UrgentTelController {
 

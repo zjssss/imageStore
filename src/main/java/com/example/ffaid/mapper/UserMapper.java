@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author DIX
- * @version 1.0
- * @description
  * @date 2019/11/29 19:43
  */
 @Mapper

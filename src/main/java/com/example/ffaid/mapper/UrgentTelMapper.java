@@ -8,8 +8,6 @@ import java.util.List;
 
 /**
  * @author DIX
- * @version 1.0
- * @description
  * @date 2019/12/9 14:54
  */
 @Mapper
