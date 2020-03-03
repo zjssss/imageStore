@@ -8,6 +8,7 @@ import java.sql.Timestamp;
  * @description
  * @date 2019/11/28 22:26
  */
+
 public class AidData {
 
     private Integer id;
