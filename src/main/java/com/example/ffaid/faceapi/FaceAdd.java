@@ -12,14 +12,14 @@ import java.net.URLEncoder;
  */
 public class FaceAdd {
 
-    public static String add() {
+    public static String add(Integer id,String fileName) {
         // 请求url
         String url = "https://aip.baidubce.com/rest/2.0/face/v3/faceset/user/add";
 
-        String uid="u_06";
+        String uid=""+id;
         String userInfo="{'username:弟弟6'}";
         String groupId="u_g_1";
-        String faceImage="C:\\Users\\Administrator\\Desktop\\下\\ImageData\\zls2.jpg";
+        String faceImage="C:\\Users\\Administrator\\Desktop\\下\\ImageData\\"+fileName;
         try {
 
             byte[] imgData=FileUtil.readFileByBytes(faceImage);
@@ -39,7 +39,7 @@ public class FaceAdd {
         return null;
     }
 
-    public static void main(String[] args) {
-        FaceAdd.add();
-    }
+//    public static void main(String[] args) {
+//        FaceAdd.add();
+//    }
 }

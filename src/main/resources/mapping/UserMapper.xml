@@ -27,6 +27,10 @@
         select * from user where id=#{id}
     </select>
 
+    <select id="getUserByTel" resultMap="tab_user">
+        select * from user where tel=#{tel}
+    </select>
+
     <update id="update" parameterType="com.example.ffaid.domain.User">
         update user
         <set>

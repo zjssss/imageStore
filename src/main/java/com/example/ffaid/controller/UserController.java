@@ -1,5 +1,11 @@
 package com.example.ffaid.controller;
 
+import com.example.ffaid.domain.Result;
+import com.example.ffaid.domain.UrgentTel;
+import com.example.ffaid.faceapi.FaceAdd;
+import com.example.ffaid.faceapi.FaceIdentify;
+import com.example.ffaid.service.AidDataService;
+import com.example.ffaid.service.UrgentTelService;
 import com.example.ffaid.util.FileUpLoadUtil;
 import com.example.ffaid.util.IdUtil;
 import com.example.ffaid.domain.User;
@@ -24,12 +30,33 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private BaiduAuth baiduAuth;
+    @Autowired
+    private UrgentTelService urgentTelService;
+
 
     private String handleUploadPicture(MultipartFile file) {
-        String path = "/ffaid/files/"
-                + IdUtil.getValue(8)
+        String ranName=IdUtil.getValue(8)
                 + file.getOriginalFilename();
+        String path = "C:\\Users\\Administrator\\Desktop\\下\\ImageData\\"
+//        String path = "/root/imag/"
+                + ranName;
+
+
+        String ok = "Success";
+        if (ok.equals(FileUpLoadUtil.upload(file, path))) {
+            return ranName;
+        }
+        return null;
+    }
+
+    private String handleUploadPictureCheck(MultipartFile file) {
+        String ranName=IdUtil.getValue(8)
+                + file.getOriginalFilename();
+        String path = "C:\\Users\\Administrator\\Desktop\\下\\ImageData\\check\\"
+//        String path = "/root/imag/"
+                + ranName;
+
+
         String ok = "Success";
         if (ok.equals(FileUpLoadUtil.upload(file, path))) {
             return path;
@@ -59,28 +86,42 @@ public class UserController {
         return userService.getUser(id);
     }
 
-//    @PostMapping("")
-//    public Object userRegister(@RequestParam("username")String username, @RequestParam("password")String password, @RequestParam("sex") Integer sex, @RequestParam("tel")String tel, @RequestParam("pic")String pic, @RequestParam("birthday") Date birtyday,@RequestParam("status")Integer status)
-//    {
-//        User user=new User();
-//        user.setUsername(username);
-//        user.setPassword(password);
-//        user.setSex(sex);
-//        user.setPic(pic);
-//        user.setTel(tel);
-//        user.setStatus(status);
-//        user.setBirthday(birtyday);
-//
-//        return ResponseEntity.ok(userService.userRegister(user));
-//    }
 
     @PostMapping("")
     public Object userRegister(MultipartFile file, User user) {
 
         System.out.println(file.isEmpty());
+        String ranName=handleUploadPicture(file);
+        user.setPic(ranName);
+        userService.userRegister(user);
+        User user1 =userService.getUserByTel(user.getTel());
+        FaceAdd.add(user1.getId(),ranName);
+        return ResponseEntity.ok();
+    }
+
+    @PostMapping("/image")
+    public Object upload(MultipartFile file) {
+
+        System.out.println(file.isEmpty());
         String url=handleUploadPicture(file);
-        user.setPic(url);
-        return ResponseEntity.ok(userService.userRegister(user));
+        return ResponseEntity.ok(url);
+    }
+
+    @PostMapping("/identify")
+    public Object searchFace(MultipartFile file) {
+
+        String picPath=handleUploadPictureCheck(file);
+//        System.out.println(picPath);
+        Result result=FaceIdentify.identify(picPath);
+
+        int userId=result.getUserId();
+        if(result.getScore()>90.0)
+        {
+            return urgentTelService.findUserTel(userId);
+        }
+        else {
+            return "not found";
+        }
     }
 
     @PutMapping("/{id}")

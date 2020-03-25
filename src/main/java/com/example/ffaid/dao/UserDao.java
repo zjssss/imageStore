@@ -60,6 +60,11 @@ public class UserDao {
         return userMapper.getUser(id);
     }
 
+    public User getUserByTel(String tel)
+    {
+        return userMapper.getUserByTel(tel);
+    }
+
 //    public User getUser(Integer id)
 //    {
 //        Jedis jedis=new Jedis("121.199.2.219",6379);

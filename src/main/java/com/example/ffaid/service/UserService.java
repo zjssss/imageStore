@@ -35,4 +35,5 @@ public class UserService {
         return userDao.getUser(id);
     }
 
+    public User getUserByTel(String tel){return userDao.getUserByTel(tel);}
 }

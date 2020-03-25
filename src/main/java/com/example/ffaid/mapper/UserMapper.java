@@ -52,4 +52,11 @@ public interface UserMapper {
      * @return
      */
     User getUser(Integer id);
+
+    /**
+     * 通过电话得到单个用户的信息
+     * @param tel
+     * @return
+     */
+    User getUserByTel(String tel);
 }
