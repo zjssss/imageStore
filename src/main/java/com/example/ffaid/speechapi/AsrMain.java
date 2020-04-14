@@ -22,10 +22,10 @@ public class AsrMain {
     private final String SECRET_KEY = "fl7qmgOLOCMynd4B3tnOX1MsqcRRn1n2";
 
     // 需要识别的文件
-    private final String FILENAME = "C:\\Users\\Administrator\\Desktop\\下\\demo\\speech-demo-master\\rest-api-asr\\bash_shell\\16k.m4a";
+    private String FILENAME = "C:\\Users\\Administrator\\Desktop\\下\\demo\\speech-demo-master\\rest-api-asr\\bash_shell\\16k.m4a";
 
     // 文件格式, 支持pcm/wav/amr 格式，极速版额外支持m4a 格式
-    private final String FORMAT = FILENAME.substring(FILENAME.length() - 3);
+    private String FORMAT = FILENAME.substring(FILENAME.length() - 3);
 
 
     private String CUID = "1234567JAVA";
@@ -85,6 +85,23 @@ public class AsrMain {
         System.out.println("Result also wrote into " + file.getAbsolutePath());
     }
 
+
+    public String runFile(String filename)throws IOException, DemoException
+    {
+        AsrMain demo = new AsrMain();
+        demo.FILENAME=filename;
+        FORMAT=demo.FILENAME.substring(demo.FILENAME.length() - 3);
+        String result = demo.run();
+
+        // 如果显示乱码，请打开result.txt查看
+        File file = new File("result.txt");
+        FileWriter fo = new FileWriter(file);
+        fo.write(result);
+        fo.close();
+        System.out.println("Result also wrote into " + file.getAbsolutePath());
+
+        return result;
+    }
 
     public String run() throws IOException, DemoException {
         TokenHolder holder = new TokenHolder(APP_KEY, SECRET_KEY, SCOPE);

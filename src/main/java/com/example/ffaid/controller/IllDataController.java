@@ -2,6 +2,7 @@ package com.example.ffaid.controller;
 
 import com.example.ffaid.domain.IllData;
 import com.example.ffaid.service.IllDataService;
+import io.swagger.annotations.Api;
 import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * @author DIX
  * @date 2019/12/9 12:13
  */
+@Api(value="既往病史controller",tags={"既往病史操作接口"})
 @RestController
 @CrossOrigin
 public class IllDataController {

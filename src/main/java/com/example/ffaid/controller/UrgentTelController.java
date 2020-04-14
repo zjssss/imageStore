@@ -2,6 +2,7 @@ package com.example.ffaid.controller;
 
 import com.example.ffaid.domain.UrgentTel;
 import com.example.ffaid.service.UrgentTelService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @author DIX
  * @date 2019/12/9 17:17
  */
+@Api(value="紧急联系人controller",tags={"紧急联系人操作接口"})
 @CrossOrigin
 @RestController
 public class UrgentTelController {
