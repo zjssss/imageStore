@@ -1,6 +1,7 @@
 package com.example.ffaid.speechapi;
 
 
+import com.example.ffaid.Exception.GetException;
 import com.example.ffaid.speechapi.common.*;
 import org.json.JSONObject;
 
@@ -12,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class AsrMain {
+    private GetException getException;
 
     private final boolean METHOD_RAW = false; // 默认以json方式上传音频文件
 

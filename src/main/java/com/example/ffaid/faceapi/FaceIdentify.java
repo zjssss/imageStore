@@ -1,6 +1,6 @@
 package com.example.ffaid.faceapi;
 
-import com.example.ffaid.domain.Result;
+import com.example.ffaid.VO.Result;
 import com.example.ffaid.util.*;
 
 import java.net.URLEncoder;

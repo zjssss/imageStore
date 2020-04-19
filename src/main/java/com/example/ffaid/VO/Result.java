@@ -1,4 +1,4 @@
-package com.example.ffaid.domain;
+package com.example.ffaid.VO;
 
 /**
  * @author DIX
